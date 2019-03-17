@@ -1,60 +1,87 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from "react"
+import { Platform } from "react-native"
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from "react-navigation"
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import TabBarIcon from "../components/TabBarIcon"
+import Steps from "../screens/Steps"
+import EarnCoinsScreen from "../screens/EarnCoinsScreen"
+import SettingsScreen from "../screens/RedeemScreen"
+import LeaderBoardScreen from "../screens/LeaderBoardScreen"
 
-const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
+const StepsStack = createStackNavigator({
+  Steps: Steps
+})
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+StepsStack.navigationOptions = {
+  tabBarLabel: "Steps",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-information-circle${focused ? '' : '-outline'}`
-          : 'md-information-circle'
+      name={Platform.OS === "ios" ? `ios-flame` : "md-flame"}
+    />
+  )
+}
+
+const LeaderBoardStack = createStackNavigator({
+  LeaderBoard: LeaderBoardScreen
+})
+
+LeaderBoardStack.navigationOptions = {
+  tabBarLabel: "Leaderboard",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-trophy" : "md-trophy"}
+    />
+  )
+}
+
+const EarnCoinsStack = createStackNavigator({
+  EarnCoins: EarnCoinsScreen
+})
+
+EarnCoinsStack.navigationOptions = {
+  tabBarLabel: "Earn Coins",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-cash" : "md-cash"}
+    />
+  )
+}
+
+const RedeemStack = createStackNavigator({
+  Redeem: SettingsScreen
+})
+
+RedeemStack.navigationOptions = {
+  tabBarLabel: "Redeem",
+  tabBarIcon: ({ focused }) => (
+    <TabBarIcon
+      focused={focused}
+      name={Platform.OS === "ios" ? "ios-wallet" : "md-wallet"}
+    />
+  )
+}
+
+export default createBottomTabNavigator(
+  {
+    StepsStack,
+    LeaderBoardStack,
+    EarnCoinsStack,
+    RedeemStack
+  },
+  {
+    tabBarOptions: {
+      style: {
+        backgroundColor: "#0E0E0E"
+      },
+      labelStyle: {
+        color: "#fff"
       }
-    />
-  ),
-};
-
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
-
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-link' : 'md-link'}
-    />
-  ),
-};
-
-const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: 'Settings',
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === 'ios' ? 'ios-options' : 'md-options'}
-    />
-  ),
-};
-
-export default createBottomTabNavigator({
-  HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+    }
+  }
+)
