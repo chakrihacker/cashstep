@@ -7,8 +7,8 @@ import {
 
 import TabBarIcon from "../components/TabBarIcon"
 import Steps from "../screens/Steps"
-import EarnCoinsScreen from "../screens/EarnCoinsScreen"
-import SettingsScreen from "../screens/RedeemScreen"
+import BonusScreen from "../screens/BonusScreen"
+import InviteScreen from "../screens/InviteScreen"
 import LeaderBoardScreen from "../screens/LeaderBoardScreen"
 
 const StepsStack = createStackNavigator({
@@ -39,30 +39,30 @@ LeaderBoardStack.navigationOptions = {
   )
 }
 
-const EarnCoinsStack = createStackNavigator({
-  EarnCoins: EarnCoinsScreen
+const BonusStack = createStackNavigator({
+  Bonus: BonusScreen
 })
 
-EarnCoinsStack.navigationOptions = {
-  tabBarLabel: "Earn Coins",
+BonusStack.navigationOptions = {
+  tabBarLabel: "Bonus",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-cash" : "md-cash"}
+      name={Platform.OS === "ios" ? "ios-gift" : "md-gift"}
     />
   )
 }
 
-const RedeemStack = createStackNavigator({
-  Redeem: SettingsScreen
+const InviteStack = createStackNavigator({
+  Invite: InviteScreen
 })
 
-RedeemStack.navigationOptions = {
-  tabBarLabel: "Redeem",
+InviteStack.navigationOptions = {
+  tabBarLabel: "Invite",
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === "ios" ? "ios-wallet" : "md-wallet"}
+      name={Platform.OS === "ios" ? "ios-person-add" : "md-person-add"}
     />
   )
 }
@@ -71,8 +71,8 @@ export default createBottomTabNavigator(
   {
     StepsStack,
     LeaderBoardStack,
-    EarnCoinsStack,
-    RedeemStack
+    BonusStack,
+    InviteStack
   },
   {
     tabBarOptions: {
