@@ -1,9 +1,14 @@
 import React from "react"
-import { View, Text } from "react-native"
+import { View, Text, TouchableOpacity, AsyncStorage } from "react-native"
 
 export default class InviteScreen extends React.Component {
   static navigationOptions = {
     header: null
+  }
+
+  handleLogout = async () => {
+    await AsyncStorage.removeItem("token")
+    this.props.navigation.navigate("AuthLoading")
   }
 
   render() {
@@ -17,6 +22,9 @@ export default class InviteScreen extends React.Component {
         }}
       >
         <Text style={{ color: "#fff", fontSize: 24 }}>Coming Soon</Text>
+        <TouchableOpacity onPress={this.handleLogout}>
+          <Text style={{ color: "#fff", fontSize: 24 }}>Logout</Text>
+        </TouchableOpacity>
       </View>
     )
   }

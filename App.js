@@ -1,13 +1,7 @@
 import React from "react"
 import { Platform, StatusBar, StyleSheet, View } from "react-native"
 import { AppLoading, Asset, Font, Icon } from "expo"
-import ApolloClient from "apollo-boost"
-import { ApolloProvider } from "react-apollo"
 import AppNavigator from "./navigation/AppNavigator"
-
-const client = new ApolloClient({
-  uri: "https://radiant-taiga-58394.herokuapp.com/"
-})
 
 export default class App extends React.Component {
   state = {
@@ -25,12 +19,10 @@ export default class App extends React.Component {
       )
     } else {
       return (
-        <ApolloProvider client={client}>
-          <View style={styles.container}>
-            {Platform.OS === "ios" && <StatusBar barStyle="default" />}
-            <AppNavigator />
-          </View>
-        </ApolloProvider>
+        <View style={styles.container}>
+          {Platform.OS === "ios" && <StatusBar barStyle="default" />}
+          <AppNavigator />
+        </View>
       )
     }
   }
